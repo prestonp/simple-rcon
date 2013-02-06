@@ -1,4 +1,4 @@
-var Rcon = require('./rcon')
+var Rcon = require('rcon')
 
 // Host: a string containing the host address
 // Port: an int for the server port number
