@@ -23,3 +23,4 @@ rconClient.exec('status', function(res) {
   console.log('response: ' + res.body)
 })
 ```
+Read more about the [RCON Protocol](https://developer.valvesoftware.com/wiki/Source_RCON_Protocol)
