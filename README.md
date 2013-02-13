@@ -6,7 +6,7 @@ Simple, painless node RCON client for Source servers
 Example
 
 ```
-var Rcon = require('rcon')
+var Rcon = require('simple-rcon')
 
 // Host: a string containing the host address
 // Port: an int for the server port number
