@@ -3,7 +3,7 @@
   "name": "simple-rcon",
   "description": "a simple rcon client",
   "main": "./rcon",
-  "version": "0.1.3",
+  "version": "0.2.1",
   "dependencies": {},
   "devDependencies": {},
   "optionalDependencies": {},
