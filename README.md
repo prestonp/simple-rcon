@@ -1,26 +1,74 @@
 simple-rcon
 ===========
 
-Simple, painless node RCON client for Source servers
+Simple, painless node RCON client for Source servers.
 
-Example
+Install by running `npm install simple-rcon`
 
+**Example**
 ```
 var Rcon = require('simple-rcon')
+var rcon = new Rcon('127.0.0.1', 27015, 'rconPassword')
 
-// Host: a string containing the host address
-// Port: an int for the server port number
-var rconClient = new Rcon('127.0.0.1', 27015)
-
-// Set up rcon password
-rconClient.auth('rconPassword')
-
-// Send rcon commands
-rconClient.exec('changelevel cp_badlands')
-
-// Send command with response
-rconClient.exec('status', function(res) {
-  console.log('response: ' + res.body)
+rcon.on('authenticated', function() {
+  console.log('Logged into server, you may execute commands!')
+  
+  // Send rcon commands
+  rcon.exec('changelevel cp_badlands')
+  
+  // Send command with response
+  rcon.exec('status', function(res) {
+    console.log('response: ' + res.body)
+  })
 })
 ```
+Check out another [example](example.js) for more stuff
+
+----
+
+new Rcon(host, port, password)
+=========
+* host - string containing host address
+* port - int for server port number
+* password - string containing rcon password
+
+
+Methods
+=======
+
+exec(cmd, [callback])
+-----
+* cmd - String containing remote command
+* callback(res) - Callback function containing response
+
+Sends rcon commands to server. Must be called after **authenticated** event.
+
+close()
+-------
+Closes connection
+
+Events
+======
+
+connected
+---------
+Client connected to server, although not authenticated
+
+authenticated
+-----------
+Client authenticated successfully with rcon password. Commands may be executed now.
+
+error
+-----
+* e - String containing error description
+
+disconnected
+------
+Connection has been closed, interrupted, or dropped.
+
+----
+
+
+Other
+=====
 Read more about the [RCON Protocol](https://developer.valvesoftware.com/wiki/Source_RCON_Protocol)
