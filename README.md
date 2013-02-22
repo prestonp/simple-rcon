@@ -33,36 +33,35 @@ new Rcon(host, port, password)
 * password - string containing rcon password
 
 
-Methods
+API
 =======
 
-exec(cmd, [callback])
+rcon.exec(cmd, [callback(res)])
 -----
 * cmd - String containing remote command
 * callback(res) - Callback function containing response
 
 Sends rcon commands to server. Must be called after **authenticated** event.
 
-close()
+rcon.close()
 -------
 Closes connection
 
 Events
 ======
-
-connected
+'connected'
 ---------
 Client connected to server, although not authenticated
 
-authenticated
+'authenticated'
 -----------
 Client authenticated successfully with rcon password. Commands may be executed now.
 
-error
+'error'
 -----
 * e - String containing error description
 
-disconnected
+'disconnected'
 ------
 Connection has been closed, interrupted, or dropped.
 
