@@ -6,10 +6,10 @@
   "version": "0.2.1",
   "dependencies": {},
   "devDependencies": {},
-  "repository" :
-  { "type" : "git"
-  , "url" : "git://github.com/prestonp/simple-rcon"
-  }
+  "repository" : { 
+    "type" : "git",
+    "url" : "git://github.com/prestonp/simple-rcon"
+  },
   "optionalDependencies": {},
   "engines": {
     "node": "*"
