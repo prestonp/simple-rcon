@@ -1,4 +1,4 @@
-var Rcon = require('simple-rcon')
+var Rcon = require('./lib/rcon')
 
 /** 
  * Host: a string containing the host address
