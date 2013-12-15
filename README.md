@@ -51,6 +51,10 @@ API
 
 ### new Rcon(options)
 
+Returns a new client and attempts to connect to server.
+
+__Arguments__
+
 * options - object containing server info
   * host - string containing host address
   * port - int for server port number
@@ -58,10 +62,12 @@ API
 
 ### exec(cmd, [callback(res)])
 
+Sends rcon commands to server. Must be called after **authenticated** event.
+
+__Arguments__
+
 * cmd - String containing remote command
 * callback(res) - Callback function containing response
-
-Sends rcon commands to server. Must be called after **authenticated** event.
 
 ### rcon.close()
 
@@ -80,9 +86,19 @@ Client authenticated successfully with rcon password. Commands may be executed n
 
 ### 'error'
 
-Error event will call user supplied callback(e).
+Connection interrupted by an error.
 
-  * e - String containing error description
+__callback(error)__
+
+  * error - String containing error description
+
+Example:
+
+```
+client.on('error', function(error) {
+  console.log(error);
+});
+```
 
 ### 'disconnected'
 
