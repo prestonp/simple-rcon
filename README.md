@@ -85,6 +85,11 @@ Closes connection
 Events
 ======
 
+* ['connected'](#connected)
+* ['authenticated'](#authenticated)
+* ['error'](#error)
+* ['disconnected'](#disconnected)
+
 ### 'connected'
 
 Client connected to server, although not authenticated
