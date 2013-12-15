@@ -49,6 +49,15 @@ Check out another [example](example.js) for more stuff
 API
 ===
 
+__Constructor__
+
+* [new Rcon(options)](#new-rconoptions)
+
+__Methods__
+
+* [exec(cmd, callback)](#execcmd-callbackres)
+* [close()](#close)
+
 ### new Rcon(options)
 
 Returns a new client and attempts to connect to server.
@@ -69,7 +78,7 @@ __Arguments__
 * cmd - String containing remote command
 * callback(res) - Callback function containing response
 
-### rcon.close()
+### close()
 
 Closes connection
 
