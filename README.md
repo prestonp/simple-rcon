@@ -24,20 +24,24 @@ Example
 -------
 
 ```
-var Rcon = require('simple-rcon')
-var rcon = new Rcon('127.0.0.1', 27015, 'rconPassword')
+var Rcon = require('simple-rcon');
+var client = new Rcon({
+  host: '127.0.0.1'
+, port: '27015'
+, password: 'rconPassword'
+});
 
-rcon.on('authenticated', function() {
-  console.log('Logged into server, you may execute commands!')
+client.on('authenticated', function() {
+  console.log('Logged into server, you may execute commands!');
   
   // Send rcon commands
-  rcon.exec('changelevel cp_badlands')
+  client.exec('changelevel cp_badlands');
   
   // Send command with response
-  rcon.exec('status', function(res) {
-    console.log('response: ' + res.body)
-  })
-})
+  client.exec('status', function(res) {
+    console.log('response: ' + res.body);
+  });
+});
 ```
 Check out another [example](example.js) for more stuff
 
@@ -45,42 +49,44 @@ Check out another [example](example.js) for more stuff
 API
 ===
 
-new Rcon(host, port, password)
-=========
-* host - string containing host address
-* port - int for server port number
-* password - string containing rcon password
+### new Rcon(options)
 
-rcon.exec(cmd, [callback(res)])
------
+* options - object containing server info
+  * host - string containing host address
+  * port - int for server port number
+  * password - string containing rcon password
+
+### exec(cmd, [callback(res)])
+
 * cmd - String containing remote command
 * callback(res) - Callback function containing response
 
 Sends rcon commands to server. Must be called after **authenticated** event.
 
-rcon.close()
--------
+### rcon.close()
+
 Closes connection
 
 Events
 ======
-'connected'
----------
+
+### 'connected'
+
 Client connected to server, although not authenticated
 
-'authenticated'
------------
+### 'authenticated'
+
 Client authenticated successfully with rcon password. Commands may be executed now.
 
-'error'
------
-* e - String containing error description
+### 'error'
 
-'disconnected'
-------
+Error event will call user supplied callback(e).
+
+  * e - String containing error description
+
+### 'disconnected'
+
 Connection has been closed, interrupted, or dropped.
-
-----
 
 Other
 -----

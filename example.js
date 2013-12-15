@@ -6,7 +6,7 @@ var Rcon = require('./lib/rcon');
  *  port: string for the server port number (default 27015)
  *  password: string for the rcon password
  **/
-var rcon = new Rcon({
+var client = new Rcon({
   host: 'SERVER_ADDRESS'
 , password: 'RCON_PASSWORD'
 });
@@ -14,28 +14,29 @@ var rcon = new Rcon({
 /**
  * Various events
  **/
-rcon.on('connected', function() { 
+client.on('connected', function() { 
   console.log('Connected to server!');
 });
 
-rcon.on('authenticated', function() { 
+client.on('authenticated', function() { 
   console.log('Logged into server, you may execute commands!');
 
   // Send rcon commands  
-  rcon.exec('changelevel cp_badlands');
+  client.exec('changelevel cp_badlands');
 
   // Send command with response
-  rcon.exec('status', function(res) {
-    console.log('response: ' + res.body)
+  client.exec('status', function(res) {
+    console.log('response: ' + res.body);
   });
-  
-  rcon.close();
+    
+  client.close();
 });
 
-rcon.on('disconnected', function() { 
+client.on('disconnected', function() { 
   console.log('Disconnected from server!');
 });
 
-rcon.on('error', function(e) {
+client.on('error', function(e) {
+  console.log("ERROR!!!");
   console.error(e);
 });
