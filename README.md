@@ -31,18 +31,20 @@ var client = new Rcon({
 , password: 'rconPassword'
 });
 
+// Send rcon commands
+client.exec('changelevel cp_badlands');
+
+// Send command with response
+client.exec('status', function(res) {
+  console.log('response: ' + res.body);
+  client.close();
+});
+
 client.on('authenticated', function() {
-  console.log('Logged into server, you may execute commands!');
-  
-  // Send rcon commands
-  client.exec('changelevel cp_badlands');
-  
-  // Send command with response
-  client.exec('status', function(res) {
-    console.log('response: ' + res.body);
-  });
+  console.log('Authenticated!');
 });
 ```
+
 Check out another [example](example.js) for more stuff
 
 
@@ -71,7 +73,9 @@ __Arguments__
 
 ### exec(cmd, [callback(res)])
 
-Sends rcon commands to server. Must be called after **authenticated** event.
+Sends rcon commands to server. If exec is called before the 
+`authenticated` event is triggered, the commands will be buffered.
+Upon authentication, all commands will be executed in order.
 
 __Arguments__
 
@@ -96,7 +100,7 @@ Client connected to server, although not authenticated
 
 ### 'authenticated'
 
-Client authenticated successfully with rcon password. Commands may be executed now.
+Client authenticated successfully with rcon password.
 
 ### 'error'
 
