@@ -11,6 +11,14 @@ var client = new Rcon({
 , password: 'RCON_PASSWORD'
 });
 
+// Send command with response
+client.exec('status', function(res) {
+  console.log('response: ' + res.body);
+});
+
+// Send rcon commands  
+client.exec('changelevel cp_granary');
+
 /**
  * Various events
  **/
@@ -18,18 +26,8 @@ client.on('connected', function() {
   console.log('Connected to server!');
 });
 
-client.on('authenticated', function() { 
-  console.log('Logged into server, you may execute commands!');
-
-  // Send rcon commands  
-  client.exec('changelevel cp_badlands');
-
-  // Send command with response
-  client.exec('status', function(res) {
-    console.log('response: ' + res.body);
-  });
-    
-  client.close();
+client.on('authenticated', function() {
+  console.log('Authenticated!');
 });
 
 client.on('disconnected', function() { 
@@ -40,3 +38,8 @@ client.on('error', function(e) {
   console.log("ERROR!!!");
   console.error(e);
 });
+
+setTimeout(function() {
+  console.log('Closing connection..');
+  client.close();
+}, 40000);
