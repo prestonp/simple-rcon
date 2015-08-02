@@ -3,6 +3,7 @@
 
 [![Build Status](https://travis-ci.org/prestonp/simple-rcon.svg?branch=master)](https://travis-ci.org/prestonp/simple-rcon)
 [![Coverage Status](https://coveralls.io/repos/prestonp/simple-rcon/badge.svg?branch=master&service=github)](https://coveralls.io/github/prestonp/simple-rcon?branch=master)
+
 [![Dependency Status](https://david-dm.org/prestonp/simple-rcon.svg)](https://david-dm.org/prestonp/simple-rcon)
 [![devDependency Status](https://david-dm.org/prestonp/simple-rcon/dev-status.svg)](https://david-dm.org/prestonp/simple-rcon#info=devDependencies)
 
