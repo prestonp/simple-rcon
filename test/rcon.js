@@ -38,16 +38,16 @@ describe('Rcon', function() {
     });
   });
 
-  describe('#end', function() {
+  describe('#close', function() {
     it('should emit a disconnecting event', function(done) {
       var client = new Rcon();
       client.on('disconnecting', done);
-      client.end();
+      client.close();
     });
 
     it('should return the client object', function() {
       var client = new Rcon();
-      expect(client.end()).to.deep.equal(client);
+      expect(client.close()).to.deep.equal(client);
     });
   });
 
