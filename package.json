@@ -2,7 +2,7 @@
   "author": "Preston Pham",
   "name": "simple-rcon",
   "description": "a simple rcon client",
-  "main": "./rcon",
+  "main": "./index",
   "version": "0.3.0",
   "license": "MIT",
   "contributors": [
