@@ -3,7 +3,11 @@
   "name": "simple-rcon",
   "description": "a simple rcon client",
   "main": "./rcon",
-  "version": "0.2.1",
+  "version": "0.3.0",
+  "license": "MIT",
+  "contributors": [
+    "Ant Cosentino <ant@io.co.za>"
+  ],
   "devDependencies": {
     "chai": "^3.1.0",
     "coveralls": "^2.11.2",
