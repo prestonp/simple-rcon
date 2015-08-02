@@ -24,7 +24,7 @@ var client = new Rcon({
   port: '27015',
   password: 'rconPassword'
 }).exec('changelevel cp_badlands', function() {
-  client.exec('say hey look the map changed!');
+  client.exec('say \'hey look the map changed!\'');
 }).exec('status', function(res) {
   console.log('Server status', res.body);
 }).exec('sm_kick somebody', function() {
@@ -42,15 +42,18 @@ client.on('authenticated', function() {
 
 ##### API
 
-* `new Rcon([options])` Returns a new client and attempts to connect to server.
-  `options`
-    - `host`: string containing host address
-    - `port`: int for server port number
-    - `password`: string containing rcon password
-* `exec(command, callback)` Sends rcon commands to server. If exec is called before the `authenticated` event is triggered, the commands will be buffered. Upon authentication, all commands will be executed in order.
+* `new Rcon([options])`:
+
+    - `options.host`: string containing host address
+    - `options.port`: int for server port number
+    - `options.password`: string containing rcon password
+
+* `exec(command, callback)`: Sends rcon commands to server. If exec is called before the `authenticated` event is triggered, the commands will be buffered. Upon authentication, all commands will be executed in order.
+
   - `command` - String containing remote command
   - `callback` - Function with signature `function(res) {}`
-* `close()` Closes connection
+
+* `close()`: Closes connection
 
 ##### Events
 
