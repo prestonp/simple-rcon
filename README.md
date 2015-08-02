@@ -1,133 +1,67 @@
-simple-rcon
-===========
+
+# simple-rcon
 
 Simple, painless node RCON client for Source servers.
 
-Install 
--------
+##### Install
 
 ```
 npm install simple-rcon
 ```
 
-Run tests
----------
+##### Examples
 
-```
-git clone git@github.com:prestonp/simple-rcon.git
-cd simple-rcon
-npm install
-npm test
-```
-
-Example
--------
-
-```
+```js
 var Rcon = require('simple-rcon');
 var client = new Rcon({
-  host: '127.0.0.1'
-, port: '27015'
-, password: 'rconPassword'
-});
-
-// Send rcon commands
-client.exec('changelevel cp_badlands');
-
-// Send command with response
-client.exec('status', function(res) {
-  console.log('response: ' + res.body);
+  host: '127.0.0.1',
+  port: '27015',
+  password: 'rconPassword'
+}).exec('changelevel cp_badlands', function() {
+  client.exec('say hey look the map changed!');
+}).exec('status', function(res) {
+  console.log('Server status', res.body);
+}).exec('sm_kick somebody', function() {
   client.close();
-});
+}).connect();
 
 client.on('authenticated', function() {
   console.log('Authenticated!');
+}).on('connected', function() {
+  console.log('Connected!');
+}).on('disconnected', function() {
+  console.log('Disconnected!');
 });
 ```
 
-Check out another [example](example.js) for more stuff
+##### API
 
+* `new Rcon([options])` Returns a new client and attempts to connect to server.
+  `options`
+    - `host`: string containing host address
+    - `port`: int for server port number
+    - `password`: string containing rcon password
+* `exec(command, callback)` Sends rcon commands to server. If exec is called before the `authenticated` event is triggered, the commands will be buffered. Upon authentication, all commands will be executed in order.
+  - `command` - String containing remote command
+  - `callback` - Function with signature `function(res) {}`
+* `close()` Closes connection
 
-API
-===
+##### Events
 
-__Constructor__
+* `connecting` Client connecting to server.
+* `connected` Client connected to server, although not authenticated.
+* `authenticated` Client authenticated successfully with rcon password.
+* `error` Connection interrupted by an error. Event callback accepts a single `err` argument.
+* `disconnecting` Connecting is about to close.
+* `disconnected` Connection has been closed, interrupted, or dropped.
 
-* [new Rcon(options)](#new-rconoptions)
+##### Contributors
 
-__Methods__
+[Ant Cosentino (skibz)](https://github.com/skibz)
 
-* [exec(cmd, callback)](#execcmd-callbackres)
-* [close()](#close)
-
-### new Rcon(options)
-
-Returns a new client and attempts to connect to server.
-
-__Arguments__
-
-* options - object containing server info
-  * host - string containing host address
-  * port - int for server port number
-  * password - string containing rcon password
-
-### exec(cmd, [callback(res)])
-
-Sends rcon commands to server. If exec is called before the 
-`authenticated` event is triggered, the commands will be buffered.
-Upon authentication, all commands will be executed in order.
-
-__Arguments__
-
-* cmd - String containing remote command
-* callback(res) - Callback function containing response
-
-### close()
-
-Closes connection
-
-Events
-======
-
-* ['connected'](#connected)
-* ['authenticated'](#authenticated)
-* ['error'](#error)
-* ['disconnected'](#disconnected)
-
-### 'connected'
-
-Client connected to server, although not authenticated
-
-### 'authenticated'
-
-Client authenticated successfully with rcon password.
-
-### 'error'
-
-Connection interrupted by an error.
-
-__callback(error)__
-
-  * error - String containing error description
-
-Example:
-
-```
-client.on('error', function(error) {
-  console.log(error);
-});
-```
-
-### 'disconnected'
-
-Connection has been closed, interrupted, or dropped.
-
-Other
------
-
+##### Further Reading
 Read more about the [RCON Protocol](https://developer.valvesoftware.com/wiki/Source_RCON_Protocol)
 
-License
--------
+##### License
 
 MIT
