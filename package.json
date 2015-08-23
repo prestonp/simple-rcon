@@ -1,22 +1,25 @@
 {
-  "author": "Preston Pham ",
+  "author": "Preston Pham",
   "name": "simple-rcon",
   "description": "a simple rcon client",
-  "main": "./rcon",
-  "version": "0.2.1",
-  "dependencies": {},
+  "main": "./index",
+  "version": "0.3.0",
+  "license": "MIT",
+  "contributors": [
+    "Ant Cosentino <ant@io.co.za>"
+  ],
   "devDependencies": {
-    "mocha": "~1.15.1"
+    "chai": "^3.2.0",
+    "coveralls": "^2.11.3",
+    "istanbul": "^0.3.17",
+    "mocha": "^2.2.5"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha"
+    "test": "istanbul test _mocha -- -R spec",
+    "coverage": "istanbul cover _mocha --report lcovonly -- test -R spec && cat coverage/lcov.info | coveralls && rm -rf coverage"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/prestonp/simple-rcon"
-  },
-  "optionalDependencies": {},
-  "engines": {
-    "node": "*"
   }
 }

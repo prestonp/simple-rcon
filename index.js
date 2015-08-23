@@ -1,1 +1,1 @@
-module.exports = ('./lib/rcon');
+module.exports = require('./lib/rcon');
