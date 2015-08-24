@@ -7,12 +7,12 @@
 [![Dependency Status](https://david-dm.org/prestonp/simple-rcon.svg)](https://david-dm.org/prestonp/simple-rcon)
 [![devDependency Status](https://david-dm.org/prestonp/simple-rcon/dev-status.svg)](https://david-dm.org/prestonp/simple-rcon#info=devDependencies)
 
-Simple, painless node RCON client for Source servers.
+Simple, painless Node.js [RCON](https://developer.valvesoftware.com/wiki/Source_RCON_Protocol) client for Source servers.
 
 ##### Install
 
 ```
-npm install simple-rcon
+npm install --save simple-rcon
 ```
 
 ##### Examples
@@ -43,16 +43,12 @@ client.on('authenticated', function() {
 ##### API
 
 * `new Rcon([options])`:
-
-    - `options.host`: string containing host address
-    - `options.port`: int for server port number
-    - `options.password`: string containing rcon password
-
-* `exec(command, callback)`: Sends rcon commands to server. If exec is called before the `authenticated` event is triggered, the commands will be buffered. Upon authentication, all commands will be executed in order.
-
-  - `command` - String containing remote command
-  - `callback` - Function with signature `function(res) {}`
-
+  - `options.host`: **String** host address
+  - `options.port`: **Integer** port number
+  - `options.password`: **String** RCON password
+* `exec(command, callback)`: Sends RCON commands to server. If `exec` is called before the `authenticated` event is emitted, the commands will be buffered for execution upon the `authenticated` event.
+  - `command` - **String** containing remote command
+  - `callback` - **Function** with signature `function(res) {}`
 * `close()`: Closes connection
 
 ##### Events
@@ -61,14 +57,15 @@ client.on('authenticated', function() {
 * `connected` Client connected to server, although not authenticated.
 * `authenticated` Client authenticated successfully with rcon password.
 * `error` Connection interrupted by an error. Event callback accepts a single `err` argument.
-* `disconnecting` Connecting is about to close.
+* `disconnecting` Connection is about to close, get interrupted or dropped.
 * `disconnected` Connection has been closed, interrupted, or dropped.
 
 ##### Contributors
 
-[Ant Cosentino (skibz)](https://github.com/skibz)
+[Ant Cosentino](https://github.com/skibz)
 
 ##### Further Reading
+
 Read more about the [RCON Protocol](https://developer.valvesoftware.com/wiki/Source_RCON_Protocol)
 
 ##### License
