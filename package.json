@@ -3,7 +3,7 @@
   "name": "simple-rcon",
   "description": "a simple rcon client",
   "main": "./index",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "license": "MIT",
   "contributors": [
     "Ant Cosentino <ant@io.co.za>"
