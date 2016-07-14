@@ -44,10 +44,10 @@ client.on('authenticated', function() {
 
 * `new Rcon([options])`:
 
-    - `options.host`: string containing host address
-    - `options.port`: int for server port number
+    - `options.host`: string containing host address (default '127.0.0.1')
+    - `options.port`: int for server port number (default 27015)
     - `options.password`: string containing rcon password
-
+    - `options.timeout`: int for socket timeout (default 5000ms)
 * `exec(command, callback)`: Sends rcon commands to server. If exec is called before the `authenticated` event is triggered, the commands will be buffered. Upon authentication, all commands will be executed in order.
 
   - `command` - String containing remote command
@@ -66,7 +66,8 @@ client.on('authenticated', function() {
 
 ##### Contributors
 
-[Ant Cosentino (skibz)](https://github.com/skibz)
+* [Ant Cosentino (skibz)](https://github.com/skibz)
+* [whitebird](https://github.com/whitebird)
 
 ##### Further Reading
 Read more about the [RCON Protocol](https://developer.valvesoftware.com/wiki/Source_RCON_Protocol)

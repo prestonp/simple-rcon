@@ -4,6 +4,21 @@ var Rcon = require('../lib/rcon');
 
 describe('Rcon', function() {
 
+  describe('constructor', function() {
+    it('should create rcon with default timeout', function() {
+      var client = new Rcon();
+      expect(client.timeout).to.equal(5000);
+
+      client = new Rcon({});
+      expect(client.timeout).to.equal(5000);
+    });
+
+    it('should create rcon with no timeout', function() {
+      var client = new Rcon({ timeout: 0 });
+      expect(client.timeout).to.equal(0);
+    });
+  });
+
   describe('#exec', function() {
     it('should add a command to the internal command queue if the client is not yet authenticated', function() {
       var client = new Rcon();
